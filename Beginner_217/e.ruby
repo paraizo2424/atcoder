@@ -1,3 +1,5 @@
+# 参考:https://ufcpp.net/study/algorithm/col_heap.html#:~:text=%E5%84%AA%E5%85%88%E5%BA%A6%E4%BB%98%E3%81%8D%E5%BE%85%E3%81%A1%E8%A1%8C%E5%88%97%EF%BC%88priority%20queue%EF%BC%89%E3%81%A8%E3%81%AF%E3%80%81,%E6%9C%80%E5%88%9D%E3%81%AB%E5%8F%96%E3%82%8A%E5%87%BA%E3%81%95%E3%82%8C%E3%81%BE%E3%81%99%E3%80%82
+
 class Array
   def push_heap(value)
     self.push(value)
@@ -20,7 +22,7 @@ class Array
   def pop_heap
     value = self.shift
 
-    n = self.length - 1
+    n = self.length
 
     return value if self.length <= 1
 
@@ -31,15 +33,19 @@ class Array
 
     while (j < n)
 
-      # 小さい方を選択
-      if j != n - 1 and self[j] > self[j + 1]
-        j += 1
+      # 子が左右あるか
+      if self[j + 1]
+        # 小さい子を選択
+        if j != n - 1 and self[j] > self[j + 1]
+          j += 1
+        end
       end
 
       # 子と値を入れ替え
       if self[j] < self[i]
         self[j], self[i] = self[i], self[j]
       end
+
       i = j
       j = 2 * i + 1
     end
