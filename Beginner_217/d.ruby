@@ -6,9 +6,7 @@ class Array
     head = 0
     tail = self.count - 1
 
-    loop do
-      break if head + 1 == tail
-
+    while head + 1 != tail
       center = (head + tail) / 2
 
       target < self[center] ? tail = center : head = center
@@ -21,13 +19,13 @@ class Array
     head = 0
     tail = self.count - 1
 
-    loop do
-      return self[tail] - self[head] if head + 1 == tail
-
+    while head + 1 != tail
       center = (head + tail) / 2
 
       target < self[center] ? tail = center : head = center
     end
+
+    self[tail] - self[head]
   end
 end
 
