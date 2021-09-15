@@ -2,21 +2,16 @@
 # 参考：https://algo-logic.info/binary-search/
 
 class Array
-  def binary_add(target)
+  def binary_insert(target)
     head = 0
     tail = self.count - 1
 
     loop do
       break if head + 1 == tail
-      return false if head == tail
 
       center = (head + tail) / 2
 
-      if target < self[center]
-        tail = center
-      else
-        head = center
-      end
+      target < self[center] ? tail = center : head = center
     end
 
     self.insert(tail, target)
@@ -28,32 +23,26 @@ class Array
 
     loop do
       return self[tail] - self[head] if head + 1 == tail
-      return false if head == tail
 
       center = (head + tail) / 2
 
-      if target < self[center]
-        tail = center
-      else
-        head = center
-      end
+      target < self[center] ? tail = center : head = center
     end
   end
 end
 
-tree_len, process_count = gets.split(' ').map(&:to_i)
+tree_length, process_count = gets.split.map(&:to_i)
 
-processes = process_count.times.map{gets.split.map(&:to_i)}
+cuttings = [0, tree_length]
 
-cuttings = [0, tree_len]
-
-processes.each do |process|
-  case process[0]
-  when 1
-    cuttings.binary_add(process.last)
-  when 2
+process_count.times do
+  process = gets.split
+  case process.first
+  when '1'
+    cuttings.binary_insert(process.last.to_i)
+  when '2'
     # 二分探索
-    pp cuttings
-    puts cuttings.binary_search(process.last)
+    # pp cuttings
+    puts cuttings.binary_search(process.last.to_i)
   end
 end
