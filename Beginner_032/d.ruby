@@ -1,3 +1,5 @@
+# 参考：https://www.youtube.com/watch?v=_8FTmJJJ468
+
 VALUE = 0
 WAIGHT = 1
 
